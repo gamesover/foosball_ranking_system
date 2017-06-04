@@ -10,7 +10,8 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
-
+> * Please config `database.yml` and `secrets.yml` yourself
+> * install latest `yarn`, `nodejs` and then run `yarn` 
 * Database creation
 
 * Database initialization

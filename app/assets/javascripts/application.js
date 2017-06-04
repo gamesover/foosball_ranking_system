@@ -15,6 +15,6 @@
 //= require admin-lte/bootstrap/js/bootstrap
 //= require admin-lte/dist/js/app
 //= require cocoon
-//= require Chart.min
+//= require admin-lte/plugins/chartjs/Chart
 //= require turbolinks
 //= require_tree .
