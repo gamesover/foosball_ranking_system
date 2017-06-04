@@ -1,0 +1,10 @@
+<%= simple_form_for @match do |f| %>
+    <%= f.input :name %>
+    <div class="add-tasks">
+      <% f.simple_fields_for :match_participants do |match_participant| %>
+          <%= render 'match_participant_fields', f: match_participant %>
+      <% end %>
+      <%= link_to_add_association 'add participant', f, :match_participants, class: 'btn btn-primary' %>
+    </div>
+    <%= f.button :submit %>
+<% end %>

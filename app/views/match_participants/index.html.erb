@@ -1,0 +1,4 @@
+<%= simple_form_for :match_participant, url: stat_match_participants_path do |f| %>
+    <%= f.input :participants, collection: @match_participants, include_blank: false, include_hidden: false, input_html: { multiple: true } %>
+    <%= f.button :submit, 'Get Stat' %>
+<% end %>

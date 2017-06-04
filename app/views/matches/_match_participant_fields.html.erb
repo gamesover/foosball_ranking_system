@@ -1,0 +1,6 @@
+<div class='nested-fields'>
+  <%= f.input :participant %>
+  <%= f.input :team %>
+  <%= f.input :result, collection: MatchParticipant.results.keys.to_a, include_blank: false, include_hidden: false %>
+  <%= link_to_remove_association "remove participant", f %>
+</div>
