@@ -12,9 +12,10 @@ jobs:
       - checkout
 
       - run:
-          name: Setup secret
+          name: Setup secret and database
           command: |
             mv config/secrets.ci.yml config/secrets.yml
+            mv config/database.ci.yml config/database.yml
       # Restore bundle cache
       - type: cache-restore
         key: rails-demo-{{ checksum "Gemfile.lock" }}
