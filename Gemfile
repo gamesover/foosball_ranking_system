@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
