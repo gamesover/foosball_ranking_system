@@ -27,5 +27,3 @@ config/database.yml
 # ignore ide config files
 .idea
 node_modules
-
-tmp/
