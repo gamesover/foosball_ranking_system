@@ -1,25 +1,43 @@
-# README
+Foosball Ranking System 
+========================
+[![CircleCI](https://circleci.com/gh/gamesover/foosball_ranking_system.svg?style=svg)](https://circleci.com/gh/gamesover/foosball_ranking_system)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+For multiple players to play games
 
-Things you may want to cover:
+### Technical Stack  ###
 
-* Ruby version
+* Ruby on Rails 
+* Frontend uses Adminlte, bootstrap based UI framework
+* CI is checked by Circle CI
+* Deploy to heroku 
 
-* System dependencies
+### Heroku Setup ###
 
-* Configuration
-> * Please config `database.yml` and `secrets.yml` yourself
-> * install latest `yarn`, `nodejs` and then run `yarn` 
-* Database creation
+This project relies on 3 [buildpacks](https://devcenter.heroku.com/articles/buildpacks)
+* heroku/ruby (heroku official version)
+* https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks (for db migrate after deploy) 
+* set a heroku server env variable `DEPLOY_TASKS = db:migrate tmp:clear`
+* heroku/nodejs (currently for adminlte only)
 
-* Database initialization
+Make sure you config everything correctly.
 
-* How to run the test suite
+### Note ###
+* `.circle/config.yml` for *CI*
+* config at `heroku` side so it auto *CD* after passing *CI*
+* When github merge the branch to the master, after CI pass, heroku will pull the latest master, deploy and db migrate automatically
+* `rubocop` and other test tools, such as `factorygirl` and `capybara` are not set yet
 
-* Services (job queues, cache servers, search engines, etc.)
+### Dev Env Setup ###
+* `rails s` to start `rails` server, `yarn` to install `nodejs` package
+* make sure pass and create all `rspec`
 
-* Deployment instructions
+### Contribution guidelines ###
 
-* ...
+* Writing tests
+* Code review
+* Other guidelines
+
+### Who do I talk to? ###
+
+* Repo owner or admin
+* Other community or team contact
