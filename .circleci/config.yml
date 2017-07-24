@@ -11,6 +11,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Setup secret
+          command: |
+            mv config/secrets.ci.yml config/secrets.yml
       # Restore bundle cache
       - type: cache-restore
         key: rails-demo-{{ checksum "Gemfile.lock" }}
