@@ -4,10 +4,10 @@ jobs:
     parallelism: 3
     working_directory: ~/foosball-ranking-system
     docker:
-      - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/ruby:2.4.1-node
         environment:
           RAILS_ENV: test
-      - image: circleci/postgres:9.4
+      - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout
 

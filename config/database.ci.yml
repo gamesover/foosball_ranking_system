@@ -1,5 +1,13 @@
-test:
+default: &default
   adapter: postgresql
   encoding: unicode
+  host: localhost
+  user: postgres
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+test:
+  <<: *default
   database: foosball_ranking_system_test
-  pool: 5
