@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  build:
+    parallelism: 3
+    working_directory: ~/foosball-ranking-system
+    docker:
+      - image: circleci/ruby:2.4.1-node-browsers
+        environment:
+          RAILS_ENV: test
+      - image: circleci/postgres:9.4
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - type: cache-restore
+        key: rails-demo-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Store bundle cache
+      - type: cache-save
+        key: rails-demo-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # Run rspec in parallel
+      - type: shell
+        command: |
+          bundle exec rspec --profile 10 \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      # Save artifacts
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
